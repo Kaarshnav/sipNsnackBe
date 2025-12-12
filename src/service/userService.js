@@ -19,4 +19,26 @@ const addNewUser = async (data) => {
     };
   }
 };
-module.exports = { addNewUser };
+const getExistingUser = async (data) => {
+  try {
+    const currentUser = await User.findOne({
+      email: data?.email,
+    });
+    const isValidUser = await bcrypt.compare(
+      data.password,
+      currentUser.password
+    );
+    if (isValidUser) {
+      return { data: currentUser, message: " User added succesfully" };
+    } else {
+      throw new Error("User Not found ");
+    }
+  } catch (err) {
+    return {
+      data: [],
+      message: `Some Error occured while fetching user into db ${err.message}`,
+    };
+  }
+};
+
+module.exports = { addNewUser, getExistingUser };

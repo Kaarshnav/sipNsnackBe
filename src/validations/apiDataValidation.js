@@ -1,6 +1,6 @@
 const z = require("zod");
 
-const UserDataValidation = z.object({
+const NewUserDataValidation = z.object({
   name: z.string(),
   email: z.email(),
   password: z.string(),
@@ -9,10 +9,17 @@ const UserDataValidation = z.object({
   // optional => it's okay if we don't send
   // nullable => value can be undefined , but key should be present
 });
-const validateUserData = (data) => {
-  console.log(UserDataValidation.parse(data), "--- res --");
-  return UserDataValidation.parse(data);
+const ExistingUserDataValidation = z.object({
+  email: z.email(),
+  password: z.string(),
+});
+const validateNewUserData = (data) => {
+  return NewUserDataValidation.parse(data);
+};
+const validateExistingUserData = (data) => {
+  return ExistingUserDataValidation.parse(data);
 };
 module.exports = {
-  validateUserData,
+  validateNewUserData,
+  validateExistingUserData,
 };
