@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const { generateOtpWithEmail } = require("../utils/otpUtils");
 const authMiddleware = async (req, res, next) => {
   try {
     console.log(" came into auth midd");
@@ -19,4 +20,20 @@ const authMiddleware = async (req, res, next) => {
     res.status(401).json({ data: [], message: "Unauthorized request" });
   }
 };
-module.exports = authMiddleware;
+
+const nodeMailerSentOtpMiddleWare = async (req, res, next) => {
+  try {
+    const email = req.body.email;
+    const confirmationResult = await generateOtpWithEmail(email);
+
+    console.log(" confirmationResult  ", confirmationResult);
+    req.confirmationResult = confirmationResult;
+    next();
+  } catch (err) {
+    res
+      .status(401)
+      .json({ data: [], message: `firebase error ${err.message} ` });
+  }
+};
+
+module.exports = { authMiddleware, nodeMailerSentOtpMiddleWare };

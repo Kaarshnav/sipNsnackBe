@@ -6,7 +6,10 @@ const {
   validateNewUserData,
   validateExistingUserData,
 } = require("../validations/apiDataValidation");
-const authMiddleware = require("../middlewares/auth");
+const {
+  authMiddleware,
+  nodeMailerSentOtpMiddleWare,
+} = require("../middlewares/auth");
 authRouter.post("/signup", async (req, res) => {
   try {
     const zodParsedData = validateNewUserData(req.body);
@@ -75,6 +78,20 @@ authRouter.post("/logout", authMiddleware, async (req, res) => {
     res.status(401).json({
       data: [],
       message: err.message,
+    });
+  }
+});
+authRouter.post("/send-otp", nodeMailerSentOtpMiddleWare, async (req, res) => {
+  try {
+    res.status(200).json({
+      data: req.confirmationResult,
+      message: "Otp sent succesfully ",
+    });
+  } catch (error) {
+    res.status(401).json({
+      data: [],
+      message: `user not vaildated ${err.message}
+      `,
     });
   }
 });
