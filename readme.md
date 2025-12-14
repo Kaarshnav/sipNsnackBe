@@ -9,8 +9,8 @@
 | POST   | `/auth/signup`      | Create account (email/phone/password)    | ✅     |
 | POST   | `/auth/login`       | Login → returns access + refresh tokens  | ✅     |
 | POST   | `/auth/logout`      | Invalidate refresh token                 | ✅     |
-| POST   | `/auth/request-otp` | Send OTP (email/phone)                   |        |
-| POST   | `/auth/verify-otp`  | Verify OTP and mark phone/email verified |        |
+| POST   | `/auth/request-otp` | Send OTP (email/phone)                   | ✅     |
+| POST   | `/auth/verify-otp`  | Verify OTP and mark phone/email verified | ✅     |
 
 ## 📁 2. User Module
 
