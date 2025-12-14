@@ -16,10 +16,10 @@
 
 #### Profile
 
-| Method | Endpoint        | Description      |
-| ------ | --------------- | ---------------- |
-| GET    | `/user/profile` | Get user profile |
-| PUT    | `/user/profile` | Update profile   |
+| Method | Endpoint        | Description      | Status |
+| ------ | --------------- | ---------------- | ------ |
+| GET    | `/user/profile` | Get user profile | ✅     |
+| PUT    | `/user/profile` | Update profile   | ✅     |
 
 #### Address Management
 

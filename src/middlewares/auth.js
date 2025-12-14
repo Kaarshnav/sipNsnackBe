@@ -3,10 +3,9 @@ const jwt = require("jsonwebtoken");
 const { generateOtpWithEmail } = require("../utils/otpUtils");
 const authMiddleware = async (req, res, next) => {
   try {
-    console.log(" came into auth midd");
     const { token } = req.cookies;
 
-    const decryptUserId = await jwt.verify(token, process.env.JWT_KEY);
+    const decryptUserId = jwt.verify(token, process.env.JWT_KEY);
 
     const userData = await User.findOne({ _id: decryptUserId.id });
     console.log(userData);

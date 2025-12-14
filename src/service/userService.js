@@ -40,5 +40,20 @@ const getExistingUser = async (data) => {
     };
   }
 };
+const updateExistingUser = async (data, id) => {
+  try {
+    const dataSynced = await User.findByIdAndUpdate(
+      id,
+      { $set: data },
+      {
+        new: true, // return updated doc
+        runValidators: true,
+      }
+    );
+    return dataSynced;
+  } catch (error) {
+    throw error;
+  }
+};
 
-module.exports = { addNewUser, getExistingUser };
+module.exports = { addNewUser, getExistingUser, updateExistingUser };

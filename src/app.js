@@ -2,6 +2,7 @@
 const express = require("express");
 const authRouter = require("./routes/authRouter");
 const cookieParser = require("cookie-parser");
+const userRouter = require("./routes/userRouter");
 // making instances
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(express.json());
 app.use(cookieParser());
 //
 
-app.use("/user", authRouter);
+app.use("/auth", authRouter);
+app.use("/user", userRouter);
 app.use("/", (req, res) => {
   res.send("aur londe , kya haal h ");
 });
