@@ -10,6 +10,7 @@ const {
   authMiddleware,
   nodeMailerSentOtpMiddleWare,
 } = require("../middlewares/auth");
+const { verifyOtpController } = require("../controllers/auth");
 authRouter.post("/signup", async (req, res) => {
   try {
     const zodParsedData = validateNewUserData(req.body);
@@ -95,4 +96,5 @@ authRouter.post("/send-otp", nodeMailerSentOtpMiddleWare, async (req, res) => {
     });
   }
 });
+authRouter.post("/verify-otp", verifyOtpController);
 module.exports = authRouter;

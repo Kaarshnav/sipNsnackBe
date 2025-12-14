@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "redis:start": "brew services start redis",
+    "redis:stop": "brew services stop redis"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "mongoose": "^9.0.1",
     "nodemailer": "^7.0.11",
     "nodemon": "^3.1.11",
+    "redis": "^5.10.0",
     "validator": "^13.15.23",
     "zod": "^4.1.13"
   }
